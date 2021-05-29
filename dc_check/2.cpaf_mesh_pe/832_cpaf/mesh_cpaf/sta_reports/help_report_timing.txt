@@ -1,0 +1,776 @@
+2.  Synopsys Commands                                        Command Reference
+                                 report_timing
+
+NAME
+       report_timing
+              Displays timing information about a design.
+
+SYNTAX
+       status report_timing
+               [-to to_list
+                | -rise_to rise_to_list
+                | -fall_to fall_to_list]
+               [-from from_list
+                | -rise_from rise_from_list
+                | -fall_from fall_from_list]
+               [-through through_list]
+               [-rise_through rise_through_list]
+               [-fall_through fall_through_list]
+               [-exclude exclude_list
+                | -rise_exclude rise_exclude_list
+                | -fall_exclude fall_exclude_list]
+               [-path_type short | full | full_clock | full_clock_expanded | only | end]
+               [-delay_type min | min_rise | min_fall | max | max_rise | max_fall]
+               [-nworst paths_per_endpoint]
+               [-max_paths max_path_count]
+               [-input_pins]
+               [-nets]
+               [-transition_time]
+               [-crosstalk_delta]
+               [-capacitance]
+               [-effective_capacitance]
+               [-attributes]
+               [-physical]
+               [-slack_greater_than greater_slack_limit]
+               [-slack_lesser_than lesser_slack_limit]
+               [-lesser_path max_path_delay]
+               [-greater_path min_path_delay]
+               [-loops]
+               [-enable_preset_clear_arcs]
+               [-significant_digits digits]
+               [-nosplit]
+               [-sort_by group | slack]
+               [-group group_name]
+               [-trace_latch_borrow]
+               [-derate]
+               [-normalized_slack]
+               [-scenarios scenario_list]
+               [-temperature]
+               [-voltage]
+               [-unique_pins]
+               [-start_end_pair]
+               [-variation]
+               [-ignore_infeasible_paths]
+
+   Data Types
+       to_list                 list
+       rise_to_list            list
+       fall_to_list            list
+       from_list               list
+       rise_from_list          list
+       fall_from_list          list
+       through_list            list
+       rise_through_list       list
+       fall_through_list       list
+       exclude_list            list
+       rise_exclude_list       list
+       fall_exclude_list       list
+       paths_per_endpoint      integer
+       max_path_count          integer
+       greater_slack_limit     float
+       lesser_slack_limit      float
+       max_path_delay          float
+       min_path_delay          float
+       digits                  integer
+       group_name              string
+       scenario_list           list
+
+ARGUMENTS
+       -to to_list
+              Reports  only the paths to the named pins, ports, or clocks.  If
+              you do not specify the -to option, the default is to report  the
+              longest  path to an output port if the design has no timing con-
+              straints.  If the design has timing constraints, the default  is
+              to  report  the path with the worst slack within each path group
+              if the -group option is not present.  If the  -group  option  is
+              given,  the  default  is to report the path with the worst slack
+              within the group specified by the -group option.
+
+       -rise_to rise_to_list
+              Same as the -to option, but applies only to paths rising at  the
+              endpoint.   If  a clock object is specified, this option selects
+              endpoints clocked by the named clock, but only  the  paths  cap-
+              tured  by  the  rising edge of the clock at clock source, taking
+              into account any logical inversions along the clock path.
+
+       -fall_to fall_to_list
+              Same as the -to option, but applies only to paths falling at the
+              endpoint.   If  a clock object is specified, this option selects
+              endpoints clocked by the named clock, but only  the  paths  cap-
+              tured by the falling edge of the clock at the clock source, tak-
+              ing into account any logical inversions along the clock path.
+
+       -from from_list
+              Reports only the paths from the named pins,  ports,  or  clocks.
+              If you do not specify the -from option, the default is to report
+              the longest path to an output port if the design has  no  timing
+              constraints.   If the design has timing constraints, the default
+              is to report the path with the  worst  slack  within  each  path
+              group if the -group option is not present.  If the -group option
+              is given, the default is to report the path with the worst slack
+              within the group specified by the -group option.
+
+       -rise_from rise_from_list
+              Same  as  the  -from option, except that the path must rise from
+              the objects specified.  If a clock  object  is  specified,  this
+              option  selects startpoints clocked by the named clock, but only
+              the paths launched by the rising edge of the clock at the  clock
+              source,  taking  into  account  any logical inversions along the
+              clock path.
+
+       -fall_from fall_from_list
+              Same as the -from option, except that the path  must  fall  from
+              the  objects  specified.   If  a clock object is specified, this
+              option selects startpoints clocked by the named clock, but  only
+              the paths launched by the falling edge of the clock at the clock
+              source, taking into account any  logical  inversions  along  the
+              clock path.
+
+       -through through_list
+              Reports  only  paths that pass through the named pins, ports, or
+              clocks.  If you do not specify the -through option, the  default
+              is  to  report  the longest path to an output port if the design
+              has no timing constraints.  If the design does have timing  con-
+              straints, the default is to report the path with the worst slack
+              within each path group if the -group option is not present.   If
+              the  -group  option  is given, the default is to report the path
+              with the worst slack within the group specified  by  the  -group
+              option.
+
+              If  you  specify  the  -through  option  only one time, the tool
+              reports only the paths that travel through one or  more  of  the
+              objects  in  the list.  You can specify the -through option more
+              than one time in one command invocation.  For  a  discussion  of
+              the  use  of multiple -through options, see the DESCRIPTION sec-
+              tion.
+
+       -rise_through rise_through_list
+              Reports only paths with a rising  transition  at  the  specified
+              objects.   This  option  is similar to the -through option.  You
+              can specify the -rise_through option more than  one  time  in  a
+              single   command  invocation.   For  a  discussion  of  multiple
+              -through, -rise_through,  and  -fall_through  options,  see  the
+              DESCRIPTION section.
+
+       -fall_through fall_through_list
+              Reports  only  paths  with a falling transition at the specified
+              objects.  This option is similar to the  -through  option.   You
+              can  specify  the  -fall_through  option more than one time in a
+              single  command  invocation.  For  a  discussion   of   multiple
+              -through,  -rise_through,  and  -fall_through  options,  see the
+              DESCRIPTION section.
+
+       -exclude exclude_list
+              Prevents reporting of all data paths from/through/to  the  named
+              pins, ports, nets, and cell instances. Any data path that starts
+              from, contains, or ends on a  listed  object  is  excluded  from
+              reporting.   If  you  specify  a  cell instance, data paths that
+              include any pin of that cell instance are excluded. This  option
+              has higher precedence than the -from, -through, -to, and similar
+              options.
+
+              The exclusion does not apply  to  clock  paths,  even  when  the
+              -path_type  full_clock  or -path_type full_clock_expanded option
+              is  used.  It  does  not  apply  to  borrowing  path  from   the
+              -trace_latch_borrow option.
+
+              This option is not applied to clock pins.
+
+       -rise_exclude rise_exclude_list
+              Same as the -exclude option, but applies only to paths rising at
+              the named pins, ports, nets, and cell instances.
+
+       -fall_exclude fall_exclude_list
+              Same as the -exclude option, but applies only to  paths  falling
+              at the named pins, ports, nets, and cell instances.
+
+       -path_type short | full | full_clock | full_clock_expanded | only | end
+              Specifies  how to display the timing path.  By default, the full
+              path is displayed.  The following values are valid:
+
+               o If full_clock is specified, the  report  is  similar  to  the
+                report you get with full but also reports the full clock paths
+                for propagated clocks.
+
+               o If full_clock_expanded is specified, the report is similar to
+                the  report  you get with full_clock but also reports the full
+                clock path from the primary clock  to  the  related  generated
+                clock source.
+
+               o  If  short  is  specified, only startpoints and endpoints are
+                displayed.
+
+               o If only is specified, only the path is displayed without  the
+                accompanying required-time and slack calculation.
+
+               o  If  end  is  specified,  the report has a column format that
+                shows one line for each path, showing only the  endpoint  path
+                total, required-time, and slack.
+
+       -delay_type min | min_rise | min_fall | max | max_rise | max_fall
+              Specifies the path type at the endpoint.  The default is max.
+
+       -nworst paths_per_endpoint
+              Specifies  the  maximum  number of paths to report per endpoint.
+              The default is 1, which reports only the single worst path  end-
+              ing at a given endpoint.
+
+       -max_paths max_path_count
+              Specifies  the  number  of  paths  to  report  per path group by
+              default, or the number of paths to report for the  whole  design
+              if  the  timing_report_fast_mode  variable  is  set to true. The
+              default is 1.
+
+       -input_pins
+              Shows input pins in the path report.  The  default  is  to  show
+              only output pins.  This option also shows the delays of the nets
+              connected to these pins.
+
+       -nets  Shows nets in the path report.  The default is not to show nets.
+              To show the delay for the nets, use the -input_pins option.
+
+       -transition_time
+              Shows  the  net transition time for each driving pin in the path
+              report.  The default is not to show the net transition time  for
+              each driving pin.
+
+       -crosstalk_delta
+              Shows  the  delta  delay  for each input pin in the path report.
+              The default is not to show the delta delay for each input pin.
+
+       -capacitance
+              Causes the total (lumped) capacitance to be shown  in  the  path
+              report.   The  default  is  not  to  show capacitance.  For each
+              driver pin, the total capacitance driven by the driver  is  dis-
+              played  in  a  column  preceding both incremental path delay and
+              transition time (specified with  the  -transition_time  option).
+              When  the  -nets option is specified, the capacitance is printed
+              on the lines with nets instead of the lines with driver pins.
+
+       -effective_capacitance
+              Causes the effective capacitance for  nets,  calculated  by  the
+              Arnoldi  method, to be shown in the path report. For each driver
+              pin, the worst effective capacitance among  all  of  the  driver
+              arcs  is  displayed  in  a column labeled "Ceff". When the -nets
+              option is used, the effective capacitance is shown in the  lines
+              reporting  the  nets,  rather than the driver pins. Only capaci-
+              tance values calculated by the Arnoldi method are shown  in  the
+              "Ceff"  column;  where  capacitance  is  calculated  by  another
+              method, the "Ceff" column is left blank.
+
+       -attributes
+              Shows the attributes specified in  the  timing_report_attributes
+              variable.  The  supported  attributes  are dont_touch, dont_use,
+              map_only, infeasible_paths  (for  the  Design  Compiler  and  DC
+              Explorer  tools),  size_only for cells, dont_touch for cells and
+              nets, and ideal_net for nets.
+
+       -physical
+              Shows the locations of the pins and the capacitive loads for the
+              pins  and nets in the path report.  The loads are displayed as a
+              pair of values with the first value being the  wire  capacitance
+              of  the  net  and  the  second value being the total capacitance
+              driven by the driver.  If the pin location cannot be determined,
+              the cell location is displayed, with the coordinates in microns.
+
+       -slack_greater_than greater_slack_limit
+              Specifies that only  those  paths  with  a  slack  greater  than
+              greater_slack_limit are to be reported.  This option can be com-
+              bined with -slack_lesser_than to report only those paths  inside
+              or outside a given slack range.
+
+       -slack_lesser_than lesser_slack_limit
+              Specifies   that  only  those  paths  with  a  slack  less  than
+              lesser_slack_limit are to be reported.  This option can be  com-
+              bined with -slack_greater_than to report only those paths inside
+              or outside a given slack range.
+
+       -lesser_path max_path_delay
+              Selects only those paths with a delay less than  max_path_delay.
+              Combine this option with the -greater_path option to select only
+              those paths inside or outside a given delay range.
+
+       -greater_path min_path_delay
+              Selects  only  those   paths   with   a   delay   greater   than
+              min_path_delay.   Combine  this  option  with  the  -lesser_path
+              option to select only those paths  inside  or  outside  a  given
+              delay range.
+
+       -loops Reports only the timing loops in the design.
+
+       -enable_preset_clear_arcs
+              Enables  asynchronous  timing arcs for this report.  By default,
+              asynchronous timing arcs are disabled during all timing  verifi-
+              cation.   This  option  allows  you to see the timing with these
+              arcs enabled.  Only the current report is affected.
+
+       -significant_digits digits
+              Specifies the number of digits to the right of the decimal point
+              to  report.   Allowed values are from 0 through 13.  The default
+              is 2.   Using  this  option  overrides  the  value  set  by  the
+              report_default_significant_digits variable.
+
+       -nosplit
+              Prevents  line  splitting and facilitates writing application to
+              extract information from the report output.  Most of the  design
+              information  is  listed in fixed-width columns.  If the informa-
+              tion in a given field exceeds the column width, the  next  field
+              begins on a new line, starting in the correct column.
+
+       -sort_by group | slack
+              Specifies  the  order  in  which  the  paths  are reported.  The
+              default -sort_by key is group.  By default, paths are sorted  by
+              costing  groups.   Within  each  group, the paths are ordered by
+              slack.  With slack, the paths are ordered by slack only.
+
+       -group group_name
+              Specifies the path group from which timing  paths  are  selected
+              for reporting, based on other specified options for reports.  If
+              the -group option is not specified, the  reported  paths  are  a
+              subset  of  paths  from  all path groups.  This option cannot be
+              used with the -loops option.
+
+       -trace_latch_borrow
+              Controls the type of report generated for a path that starts  at
+              a  transparent  latch.   If the path startpoint borrows from the
+              previous stage, using this option causes the report to show  the
+              entire  set  of  borrowing  paths  that lead up to the borrowing
+              latch, starting with  a  nonborrowing  path  or  a  noninverting
+              sequential  loop.   By  default,  the report shows only the last
+              path in  the  sequence  of  borrowing  stages.   Each  stage  is
+              reported  separately, showing the time borrowed and lent and the
+              endpoints of the stage.  The cumulative amount of borrowed  time
+              along  a  sequence of stages is not included in the report.  The
+              -input_pins, -nets, -transition_time, -capacitance, and -signif-
+              icant_digits  options  apply  to  every stage in the sequence of
+              borrowing paths, but the remaining options (for example,  -from)
+              apply only to the last stage reported.
+
+       -derate
+              Prints  timing derate values for each path element.  By default,
+              no derate value is printed.  When this option is specified,  the
+              -input_pins  and  -nets  options  are  automatically  turned on.
+              Input delay and ideal clock network latency is not derated.
+
+       -normalized_slack
+              Paths are gathered and sorted using normalized slack instead  of
+              slack.   Normalized  slack  divides  the  slack  by an idealized
+              allowed propagation delay.  In order to  use  this  option,  you
+              must  run  the update_timing command with the timing_enable_nor-
+              malized_slack variable set to true.
+
+       -scenarios scenario_list
+              Reports each  scenario  in  the  list  separately,  with  up  to
+              -max_paths paths reported for each scenario.  Inactive scenarios
+              are skipped in the report.  If this option is  not  given,  only
+              the current scenario is reported.
+
+       -temperature
+              Reports  the  operating condition temperature for each path ele-
+              ment for multivoltage designs.
+
+       -voltage
+              Reports the operating condition voltage for  each  path  element
+              for  multivoltage  designs.  When  the operating condition for a
+              macro, switch, or pad cell is inferred from other library cells,
+              a  tilde character (~) is displayed next to the voltage value in
+              the timing report.
+
+       -unique_pins
+              Causes only the single  worst  timing  path  through  any  given
+              sequence of pins to be reported. No other paths are reported for
+              the same sequence of pins from startpoint to endpoint. For exam-
+              ple,  if  the  worst path starts with a rising edge at the first
+              pin of a pin sequence, then paths starting with a  falling  edge
+              are  not reported for that sequence. For non-unate logic such as
+              XOR gates, this greatly reduces the  number  of  paths  reported
+              because of the large number of possible rising/falling edge com-
+              binations through the sequence of pins. Using  this  option  can
+              require  longer  runtimes  when  used  with the -nworst n option
+              because many paths must be  analyzed  to  find  the  worst  path
+              through  each  pin sequence, but only the worst path is reported
+              and counted toward the total number of requested paths.
+
+       -start_end_pair
+              Limits reporting to the single worst timing path per each combi-
+              nation  of  startpoint  and  endpoint  found. No other paths are
+              reported that have the same startpoint and  same  endpoint.  For
+              example, if the worst path starts at a register clock pin ff1/CK
+              and ends at a register input pin ff5/D,  the  report  omits  all
+              other  less  critical  paths  from  ff1/CK  to ff5/D. Using this
+              option can require longer runtimes when used with the -nworst  n
+              option  because  many  paths  must be analyzed to find the worst
+              path through each pin pair, but only the worst path in each case
+              is  reported  and  counted  toward the total number of requested
+              paths.
+
+       -variation
+              Reports the mean and standard deviation of the statistical  time
+              increment  for  each  path  element. This option works only when
+              parametric on-chip variation (POCV) analysis has been enabled by
+              setting  the  timing_pocvm_enable_analysis variable to true.  By
+              default, statistical parameters are not reported.
+
+       -ignore_infeasible_paths
+              Ignores all paths flagged as infeasible during the latest compi-
+              lation.
+
+DESCRIPTION
+       The  report_timing  command provides a report of timing information for
+       the current design.  By default, the report_timing command reports  the
+       single worst setup path in each clock group.
+
+       The  command  options let you specify the number of paths reported, the
+       types of paths reported, and the  amount  of  detail  included  in  the
+       report.   You  can restrict the scope of paths reported by startpoints,
+       endpoints, and  intermediate  points  by  using  the  -from,  -to,  and
+       -through   options;   and   by  slack  or  clock  group  by  using  the
+       -slack_lesser_than and -group options.
+
+       The timing report starts by showing the primary command settings, oper-
+       ating  conditions, path startpoint, path endpoint, path group name, and
+       path timing check type (max for a setup check, min for  a  hold  check,
+       and so on).
+
+       A  table  in  the  report shows point-by-point accounting of the delays
+       along the path from the startpoint to the endpoint.  The default  table
+       has  columns  labeled  Point,  Incr,  and Path.  These columns list the
+       points (cell pins) along the path, the incremental contribution to  the
+       delay at each point, and the cumulative delay up to that point, respec-
+       tively.  Hierarchical boundary crossings are listed  as  well,  showing
+       zero  incremental  delay  at each crossing.  You can optionally display
+       net delays in the report by using the -input_pins option and net  names
+       by using the -nets option.
+
+       The  symbols  "r"  and "f" in the Path column indicate the sense of the
+       signal transition, either rising or falling, at that point in the path.
+
+       For  a setup check, the path starts with the launch clock edge and ends
+       at the data input of the capture device.  The data arrival  time  shown
+       in  the  table  is  the  amount  of elapsed time from the source of the
+       launch clock edge to the arrival of data at the endpoint,  taking  into
+       consideration the longest possible delays along the path.
+
+       Following  this  is  the accounting for the required arrival time.  The
+       data required time shown in the table is the latest  allowable  arrival
+       time for the data at the path endpoint, taking into account the nominal
+       capture clock edge time, the clock  network  delay,  the  clock  uncer-
+       tainty,  the least possible delay along the clock path, and the library
+       setup time requirement for the capture device.
+
+       The slack value shown at the end of the report  is  the  data  required
+       time  minus  the data arrival time.  This represents the amount of time
+       by which the timing constraint is met.
+
+       Back-annotations on path elements in the timing path are indicated by a
+       character  symbol  in  the  Incr  column.  If the -input_pins option is
+       used, each pin-to-pin delay spans either a net  or  cell.   The  symbol
+       shown refers to the dominant annotation on each path element.  (Certain
+       annotations dominate others; for example,  SDF  takes  precedence  over
+       back-annotated RC parasitics.)
+
+         Symbol     Annotation
+         ------     ----------
+         ^          Ideal network latency annotation
+         *          Back-annotation using SDF or preroute Elmore extraction
+         &          RC network back-annotation using Elmore delay calculation
+         #          Estimated delay for high-fanout net
+         z          Zero delay due to set_zero_interconnect_delay_mode
+         <none>     Wire-load model or none
+
+       You  can  use  multiple -through options in a single command to specify
+       paths that traverse multiple points in the design.  The following exam-
+       ple  specifies  paths beginning at A1, passing through B1, then through
+       C1, and ending at D1:
+
+         prompt> report_timing -from A1 -through B1 -through C1 -to D1
+
+       If more than one object is specified within one  -through  option,  the
+       path can pass through any of the objects.  The following example speci-
+       fies paths beginning at A1, passing through either B1 or B2, then pass-
+       ing through either C1 or C2, and ending at D1:
+
+         prompt> report_timing -from A1 -through {B1 B2} -through {C1 C2} -to D1
+       Creation  and  usage  of  scenarios  is  available with Design Compiler
+       Graphical.
+
+   Multicorner-Multimode Support
+       By default, this command uses information from  the  current  scenario.
+       You can select different scenarios by using the -scenarios option.  The
+       only exception is the clock object, which only comes from current  sce-
+       nario.
+
+EXAMPLES
+       The following example shows a timing report using only the default val-
+       ues:
+
+         prompt> report_timing
+
+         ****************************************
+         Report : timing
+                 -path full
+                 -delay max
+                 -max_paths 1
+         Design : led
+         Version: v3.1a
+         Date   : Tue Apr  7 16:23:02 1992
+         ****************************************
+
+         Operating Conditions:
+         Wire Loading Model Mode: top
+
+           Startpoint: c (input port)
+           Endpoint: z2 (output port)
+           Path Group: default
+           Path Type: max
+
+           Point                                    Incr       Path
+           -----------------------------------------------------------
+           input external delay                     0.00       0.00 r
+           c (in)                                   0.00       0.00 r
+           u1/Z (IVA)                               0.54       0.54 f
+           u0/Z (NR2)                               1.20       1.74 r
+           u8/Z (IVA)                               0.43       2.17 f
+           u7/Z (OR3)                               1.24       3.41 f
+           z2 (out)                                 0.00       3.41 f
+           data arrival time                                   3.41
+
+           max_delay                                0.00       0.00
+           output external delay                    0.00       0.00
+           data required time                                  0.00
+           -----------------------------------------------------------
+           data required time                                  0.00
+           data arrival time                                  -3.41
+           -----------------------------------------------------------
+           slack (VIOLATED)                                   -3.41
+
+       The following example reports the longest path to Z1, without required-
+       time and slack calculation:
+
+         prompt> report_timing -to z1 -nworst 2 -path_type only
+
+         ****************************************
+         Report : timing
+                 -path only
+                 -delay max
+                 -nworst 2
+                 -max_paths 2
+         Design : led
+         Version: v3.1a
+         Date   : Tue Apr  7 16:52:43 1992
+         ****************************************
+
+         Operating Conditions:
+         Wire Loading Model Mode: top
+
+           Startpoint: c (input port)
+           Endpoint: z1 (output port)
+           Path Group: default
+           Path Type: max
+
+           Point                                    Incr       Path
+           -----------------------------------------------------------
+           input external delay                     0.00       0.00 f
+           c (in)                                   0.00       0.00 f
+           u1/Z (IVA)                               0.60       0.60 r
+           u17/Z (AO7)                              0.53       1.13 f
+           u18/Z (OR3)                              1.24       2.37 f
+           z1 (out)                                 0.00       2.37 f
+           data arrival time                                   2.37
+           -----------------------------------------------------------
+
+           Startpoint: d (input port)
+           Endpoint: z1 (output port)
+           Path Group: default
+           Path Type: max
+
+           Point                                    Incr       Path
+           -----------------------------------------------------------
+           input external delay                     0.00       0.00 f
+           d (in)                                   0.00       0.00 f
+           u20/Z (IVA)                              0.53       0.53 r
+           u17/Z (AO7)                              0.53       1.06 f
+           u18/Z (OR3)                              1.24       2.30 f
+           z1 (out)                                 0.00       2.30 f
+           data arrival time                                   2.30
+           -----------------------------------------------------------
+
+       The  following  example reports the endpoint path delay, required time,
+       and slack for each path:
+
+         prompt> report_timing -path_type end
+
+         ****************************************
+         Report : timing
+                 -path end
+                 -delay max
+         Design : led
+         Version: v3.1a
+         Date   : Tue Apr  7 16:28:07 1992
+         ****************************************
+
+         Operating Conditions:
+         Wire Loading Model Mode: top
+
+         Endpoint                Path Delay     Path Required     Slack
+         ----------------------------------------------------------------
+         z2                         3.41 f            0.00        -3.41
+         z3                         3.03 f            0.00        -3.03
+         z4                         2.77 f            0.00        -2.77
+         z6                         2.69 r            0.00        -2.69
+         z0                         2.59 f            0.00        -2.59
+         z1                         2.37 f            0.00        -2.37
+         z5                         2.26 f            0.00        -2.26
+
+       The following example reports the startpoints and endpoints of the path
+       from a to z2:
+
+         prompt> report_timing -from a -to z2 -path_type short
+
+         ****************************************
+         Report : timing
+                 -path short
+                 -delay max
+                 -max_paths 1
+         Design : led
+         Version: v3.1a
+         Date   : Tue Apr  7 16:29:40 1992
+         ****************************************
+
+         Operating Conditions:
+         Wire Loading Model Mode: top
+
+           Startpoint: a (input port)
+           Endpoint: z2 (output port)
+           Path Group: default
+           Path Type: max
+
+           Point                                    Incr       Path
+           -----------------------------------------------------------
+           input external delay                     0.00       0.00 f
+           a (in)                                   0.00       0.00 f
+           ...
+           z2 (out)                                 1.24       1.24 f
+           data arrival time                                   1.24
+
+           max_delay                                0.00       0.00
+           output external delay                    0.00       0.00
+           data required time                                  0.00
+           -----------------------------------------------------------
+           data required time                                  0.00
+           data arrival time                                  -1.24
+           -----------------------------------------------------------
+           slack (VIOLATED)                                   -1.24
+
+       The  following  example  shows input pins in the report, in addition to
+       the default values:
+
+         prompt> report_timing -input_pins
+
+         ****************************************
+         Report : timing
+                 -path full
+                 -delay max
+                 -input_pins
+                 -max_paths 1
+         Design : led
+         Version: v3.1a
+         Date   : Tue Apr  7 16:32:28 1992
+         ****************************************
+
+         Operating Conditions:
+         Wire Loading Model Mode: top
+
+           Startpoint: c (input port)
+           Endpoint: z2 (output port)
+           Path Group: default
+           Path Type: max
+
+           Point                                    Incr       Path
+           -----------------------------------------------------------
+           input external delay                     0.00       0.00 r
+           c (in)                                   0.00       0.00 r
+           u1/A (IVA)                               0.00       0.00 r
+           u1/Z (IVA)                               0.54       0.54 f
+           u0/A (NR2)                               0.00       0.54 f
+           u0/Z (NR2)                               1.20       1.74 r
+           u8/A (IVA)                               0.00       1.74 r
+           u8/Z (IVA)                               0.43       2.17 f
+           u7/B (OR3)                               0.00       2.17 f
+           u7/Z (OR3)                               1.24       3.41 f
+           z2 (out)                                 0.00       3.41 f
+           data arrival time                                   3.41
+
+           max_delay                                0.00       0.00
+           output external delay                    0.00       0.00
+           data required time                                  0.00
+           -----------------------------------------------------------
+           data required time                                  0.00
+           data arrival time                                  -3.41
+           -----------------------------------------------------------
+           slack (VIOLATED)                                   -3.41
+
+       The following example shows input pins and nets in the report, and does
+       not show required time and slack calculation:
+
+         prompt> report_timing -input_pins -nets -path_type only
+
+         ****************************************
+         Report : timing
+                 -path only
+                 -delay max
+                 -input_pins
+                 -nets
+                 -max_paths 1
+         Design : led
+         Version: v3.1a
+         Date   : Tue Apr  7 16:34:20 1992
+         ****************************************
+
+         Operating Conditions:
+         Wire Loading Model Mode: top
+
+           Startpoint: c (input port)
+           Endpoint: z2 (output port)
+           Path Group: default
+           Path Type: max
+
+           Point                                    Incr       Path
+           -----------------------------------------------------------
+           input external delay                     0.00       0.00 r
+           c (in)                                   0.00       0.00 r
+           c (net)                                  0.00       0.00 r
+           u1/A (IVA)                               0.00       0.00 r
+           u1/Z (IVA)                               0.54       0.54 f
+           cell24/n22 (net)                         0.00       0.54 f
+           u0/A (NR2)                               0.00       0.54 f
+           u0/Z (NR2)                               1.20       1.74 r
+           cell24/n21 (net)                         0.00       1.74 r
+           u8/A (IVA)                               0.00       1.74 r
+           u8/Z (IVA)                               0.43       2.17 f
+           cell24/n19 (net)                         0.00       2.17 f
+           u7/B (OR3)                               0.00       2.17 f
+           u7/Z (OR3)                               1.24       3.41 f
+           z2 (net)                                 0.00       3.41 f
+           z2 (out)                                 0.00       3.41 f
+           data arrival time                                   3.41
+           -----------------------------------------------------------
+
+SEE ALSO
+       create_scenario(2)
+       current_scenario(2)
+       report_constraint(2)
+       set_operating_conditions(2)
+       set_timing_derate(2)
+       set_timing_ranges(2)
+       set_wire_load_min_block_size(2)
+       set_wire_load_mode(2)
+       set_wire_load_model(2)
+       set_wire_load_selection_group(2)
+       report_default_significant_digits(3)
+       timing_pocvm_enable_analysis(3)
+       timing_report_attributes(3)
+       timing_report_fast_mode(3)
+
+                         Version K-2015.06-SP2-1
+            Copyright (c) 2015 Synopsys, Inc. All rights reserved.

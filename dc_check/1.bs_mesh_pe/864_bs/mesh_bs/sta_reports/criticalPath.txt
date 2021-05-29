@@ -1,0 +1,80 @@
+Information: Updating design information... (UID-85)
+Warning: Design 'top_sa_2D' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : top_sa_2D
+Version: K-2015.06-SP2-1
+Date   : Tue Jan 26 17:29:35 2021
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: ss0p95v125c   Library: saed32hvt_ss0p95v125c
+Wire Load Model Mode: enclosed
+
+  Startpoint: core/_T_236_reg
+              (rising edge-triggered flip-flop clocked by CLK)
+  Endpoint: core/_T_155_0_reg[3]
+            (rising edge-triggered flip-flop clocked by CLK)
+  Path Group: CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Mesh               1000000               saed32hvt_ss0p95v125c
+  PE_64              16000                 saed32hvt_ss0p95v125c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock CLK (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  core/_T_236_reg/CLK (DFFX2_HVT)                         0.00       0.00 r
+  core/_T_236_reg/QN (DFFX2_HVT)                          0.18       0.18 r
+  core/U8/Y (INVX4_HVT)                                   0.05       0.23 f
+  core/mesh_0_0/io_in_control_0_propagate (Tile)          0.00       0.23 f
+  core/mesh_0_0/tile_0_0/io_in_control_propagate (PE_64)
+                                                          0.00       0.23 f
+  core/mesh_0_0/tile_0_0/U785/Y (XNOR2X2_HVT)             0.14       0.37 r
+  core/mesh_0_0/tile_0_0/U1202/Y (NAND2X4_HVT)            0.14       0.51 f
+  core/mesh_0_0/tile_0_0/U363/Y (NBUFFX16_HVT)            0.09       0.59 f
+  core/mesh_0_0/tile_0_0/U745/Y (NAND2X0_HVT)             0.06       0.66 r
+  core/mesh_0_0/tile_0_0/U740/Y (NAND4X0_HVT)             0.10       0.76 f
+  core/mesh_0_0/tile_0_0/U737/Y (AO22X1_HVT)              0.15       0.91 f
+  core/mesh_0_0/tile_0_0/U125/Y (NAND2X0_HVT)             0.05       0.96 r
+  core/mesh_0_0/tile_0_0/U1764/Y (NAND4X0_HVT)            0.11       1.07 f
+  core/mesh_0_0/tile_0_0/U1763/Y (AO21X1_HVT)             0.10       1.17 f
+  core/mesh_0_0/tile_0_0/U1072/Y (AND2X1_HVT)             0.10       1.27 f
+  core/mesh_0_0/tile_0_0/U2371/Y (AND2X1_HVT)             0.07       1.34 f
+  core/mesh_0_0/tile_0_0/U2370/Y (NAND4X0_HVT)            0.04       1.39 r
+  core/mesh_0_0/tile_0_0/U1467/Y (OR2X2_HVT)              0.10       1.49 r
+  core/mesh_0_0/tile_0_0/U243/Y (NBUFFX16_HVT)            0.09       1.58 r
+  core/mesh_0_0/tile_0_0/U556/Y (XNOR2X2_HVT)             0.13       1.71 r
+  core/mesh_0_0/tile_0_0/U555/Y (NAND4X0_HVT)             0.11       1.82 f
+  core/mesh_0_0/tile_0_0/U1707/Y (OR2X1_HVT)              0.10       1.93 f
+  core/mesh_0_0/tile_0_0/U1937/Y (OR3X1_HVT)              0.10       2.03 f
+  core/mesh_0_0/tile_0_0/U1197/Y (AO22X1_HVT)             0.11       2.14 f
+  core/mesh_0_0/tile_0_0/U1071/Y (OR2X2_HVT)              0.09       2.23 f
+  core/mesh_0_0/tile_0_0/U1069/Y (OA21X1_HVT)             0.09       2.32 f
+  core/mesh_0_0/tile_0_0/U1070/Y (NAND2X0_HVT)            0.04       2.36 r
+  core/mesh_0_0/tile_0_0/io_out_c[3] (PE_64)              0.00       2.36 r
+  core/mesh_0_0/io_out_c_0[3] (Tile)                      0.00       2.36 r
+  core/_T_155_0_reg[3]/D (DFFX1_HVT)                      0.00       2.36 r
+  data arrival time                                                  2.36
+
+  clock CLK (rise edge)                                   2.45       2.45
+  clock network delay (ideal)                             0.00       2.45
+  core/_T_155_0_reg[3]/CLK (DFFX1_HVT)                    0.00       2.45 r
+  library setup time                                     -0.09       2.36
+  data required time                                                 2.36
+  --------------------------------------------------------------------------
+  data required time                                                 2.36
+  data arrival time                                                 -2.36
+  --------------------------------------------------------------------------
+  slack (VIOLATED: increase significant digits)                      0.00
+
+
+1

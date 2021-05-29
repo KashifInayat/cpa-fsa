@@ -1,0 +1,77 @@
+Information: Updating design information... (UID-85)
+Warning: Design 'top_sa_2D' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : top_sa_2D
+Version: K-2015.06-SP2-1
+Date   : Mon Jan 25 16:17:53 2021
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: ss0p95v125c   Library: saed32hvt_ss0p95v125c
+Wire Load Model Mode: enclosed
+
+  Startpoint: core/_T_236_reg
+              (rising edge-triggered flip-flop clocked by CLK)
+  Endpoint: core/_T_155_0_reg[2]
+            (rising edge-triggered flip-flop clocked by CLK)
+  Path Group: CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Mesh               540000                saed32hvt_ss0p95v125c
+  PE_64              8000                  saed32hvt_ss0p95v125c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock CLK (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  core/_T_236_reg/CLK (DFFX2_HVT)                         0.00       0.00 r
+  core/_T_236_reg/QN (DFFX2_HVT)                          0.17       0.17 r
+  core/U181/Y (INVX2_HVT)                                 0.05       0.22 f
+  core/mesh_0_0/io_in_control_0_propagate (Tile)          0.00       0.22 f
+  core/mesh_0_0/tile_0_0/io_in_control_propagate (PE_64)
+                                                          0.00       0.22 f
+  core/mesh_0_0/tile_0_0/U450/Y (XOR2X2_HVT)              0.16       0.38 r
+  core/mesh_0_0/tile_0_0/U311/Y (NAND2X0_HVT)             0.08       0.46 f
+  core/mesh_0_0/tile_0_0/U312/Y (NAND2X0_HVT)             0.07       0.53 r
+  core/mesh_0_0/tile_0_0/U68/Y (OR2X2_HVT)                0.09       0.63 r
+  core/mesh_0_0/tile_0_0/U69/Y (INVX2_HVT)                0.03       0.66 f
+  core/mesh_0_0/tile_0_0/U1690/Y (NAND2X0_HVT)            0.06       0.72 r
+  core/mesh_0_0/tile_0_0/U1691/Y (AND2X1_HVT)             0.10       0.82 r
+  core/mesh_0_0/tile_0_0/U65/Y (OR2X2_HVT)                0.09       0.91 r
+  core/mesh_0_0/tile_0_0/U759/Y (OA22X1_HVT)              0.12       1.02 r
+  core/mesh_0_0/tile_0_0/U124/Y (NAND3X0_HVT)             0.08       1.10 f
+  core/mesh_0_0/tile_0_0/U123/Y (OR3X1_HVT)               0.12       1.23 f
+  core/mesh_0_0/tile_0_0/U709/Y (NAND2X0_HVT)             0.05       1.28 r
+  core/mesh_0_0/tile_0_0/U63/Y (OR2X2_HVT)                0.09       1.37 r
+  core/mesh_0_0/tile_0_0/U552/Y (XNOR2X2_HVT)             0.13       1.50 r
+  core/mesh_0_0/tile_0_0/U551/Y (OR3X1_HVT)               0.10       1.60 r
+  core/mesh_0_0/tile_0_0/U731/Y (NAND2X0_HVT)             0.06       1.66 f
+  core/mesh_0_0/tile_0_0/U122/Y (AND3X2_HVT)              0.15       1.81 f
+  core/mesh_0_0/tile_0_0/U764/Y (NAND2X0_HVT)             0.07       1.87 r
+  core/mesh_0_0/tile_0_0/U765/Y (NAND3X0_HVT)             0.07       1.94 f
+  core/mesh_0_0/tile_0_0/io_out_c[2] (PE_64)              0.00       1.94 f
+  core/mesh_0_0/io_out_c_0[2] (Tile)                      0.00       1.94 f
+  core/_T_155_0_reg[2]/D (DFFX1_HVT)                      0.00       1.94 f
+  data arrival time                                                  1.94
+
+  clock CLK (rise edge)                                   2.02       2.02
+  clock network delay (ideal)                             0.00       2.02
+  core/_T_155_0_reg[2]/CLK (DFFX1_HVT)                    0.00       2.02 r
+  library setup time                                     -0.08       1.94
+  data required time                                                 1.94
+  --------------------------------------------------------------------------
+  data required time                                                 1.94
+  data arrival time                                                 -1.94
+  --------------------------------------------------------------------------
+  slack (VIOLATED: increase significant digits)                      0.00
+
+
+1

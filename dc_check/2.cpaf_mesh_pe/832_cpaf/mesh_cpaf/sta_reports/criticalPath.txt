@@ -1,0 +1,72 @@
+Information: Updating design information... (UID-85)
+Warning: Design 'top_sa_2D' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : top_sa_2D
+Version: K-2015.06-SP2-1
+Date   : Mon Jan 25 15:21:03 2021
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: ss0p95v125c   Library: saed32hvt_ss0p95v125c
+Wire Load Model Mode: enclosed
+
+  Startpoint: core/_T_283_reg
+              (rising edge-triggered flip-flop clocked by CLK)
+  Endpoint: core/temp_io_out_c_1_0_reg[20]
+            (rising edge-triggered flip-flop clocked by CLK)
+  Path Group: CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Mesh               280000                saed32hvt_ss0p95v125c
+  PE_64              8000                  saed32hvt_ss0p95v125c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock CLK (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  core/_T_283_reg/CLK (DFFSSRX2_HVT)                      0.00       0.00 r
+  core/_T_283_reg/QN (DFFSSRX2_HVT)                       0.18       0.18 r
+  core/mesh_7_1/io_in_control_0_propagate (Tile)          0.00       0.18 r
+  core/mesh_7_1/tile_0_0/io_in_control_propagate (PE_64)
+                                                          0.00       0.18 r
+  core/mesh_7_1/tile_0_0/U5/Y (NBUFFX4_HVT)               0.12       0.30 r
+  core/mesh_7_1/tile_0_0/U39/Y (INVX2_HVT)                0.11       0.41 f
+  core/mesh_7_1/tile_0_0/U198/Y (INVX2_HVT)               0.14       0.55 r
+  core/mesh_7_1/tile_0_0/U339/Y (AO22X1_HVT)              0.16       0.70 r
+  core/mesh_7_1/tile_0_0/io_out_c[32] (PE_64)             0.00       0.70 r
+  core/mesh_7_1/io_out_c_0[32] (Tile)                     0.00       0.70 r
+  core/U1173/Y (NAND2X0_HVT)                              0.07       0.77 f
+  core/U420/Y (INVX0_HVT)                                 0.04       0.81 r
+  core/U414/Y (AO21X1_HVT)                                0.11       0.93 r
+  core/U413/Y (NAND2X0_HVT)                               0.05       0.98 f
+  core/U416/Y (NAND2X0_HVT)                               0.06       1.04 r
+  core/U1400/Y (AO21X1_HVT)                               0.12       1.16 r
+  core/U1399/Y (NAND2X0_HVT)                              0.05       1.22 f
+  core/U82/Y (NAND2X4_HVT)                                0.14       1.35 r
+  core/U382/Y (NAND2X0_HVT)                               0.05       1.41 f
+  core/U381/Y (NAND2X0_HVT)                               0.06       1.47 r
+  core/U1949/Y (XNOR2X1_HVT)                              0.15       1.63 r
+  core/temp_io_out_c_1_0_reg[20]/D (DFFX1_HVT)            0.00       1.63 r
+  data arrival time                                                  1.63
+
+  clock CLK (rise edge)                                   1.72       1.72
+  clock network delay (ideal)                             0.00       1.72
+  core/temp_io_out_c_1_0_reg[20]/CLK (DFFX1_HVT)          0.00       1.72 r
+  library setup time                                     -0.09       1.63
+  data required time                                                 1.63
+  --------------------------------------------------------------------------
+  data required time                                                 1.63
+  data arrival time                                                 -1.63
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

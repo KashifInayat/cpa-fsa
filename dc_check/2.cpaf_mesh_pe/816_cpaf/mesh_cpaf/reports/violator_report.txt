@@ -1,0 +1,139 @@
+ 
+****************************************
+Report : constraint
+        -all_violators
+Design : top_sa_2D
+Version: K-2015.06-SP2-1
+Date   : Mon Jan 25 15:28:04 2021
+****************************************
+
+
+   max_delay/setup ('CLK' group)
+
+                             Required        Actual
+   Endpoint                 Path Delay     Path Delay        Slack
+   -----------------------------------------------------------------
+   core/mesh_7_0/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_0_0/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_0_1/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_0_2/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_0_3/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_0_4/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_0_5/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_0_6/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_6_5/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_1_0/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_1_1/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_1_2/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_1_3/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_1_4/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_1_5/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_1_6/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_2_0/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_2_1/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_2_2/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_2_3/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_2_4/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_2_5/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_2_6/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_3_0/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_3_1/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_3_2/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_3_3/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_3_4/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_3_5/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_3_6/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_4_0/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_4_1/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_4_2/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_4_3/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_4_4/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_4_5/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_4_6/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_5_0/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_5_1/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_5_2/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_5_3/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_5_4/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_5_5/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_5_6/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_6_0/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_6_1/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_6_2/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_6_3/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_6_4/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_6_6/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_7_2/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_7_3/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_7_4/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_7_5/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_7_6/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+   core/mesh_0_7/tile_0_0/c2_s_reg[12]/D
+                                1.58           1.58 f         0.00  (VIOLATED: increase significant digits)
+
+
+   max_leakage_power
+
+                             Required        Actual
+   Design                   Leakage Power  Leakage Power     Slack
+   -----------------------------------------------------------------
+   top_sa_2D                    0.00       3144617984.00  -3144617984.00
+                                                                    (VIOLATED)
+
+
+1

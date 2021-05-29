@@ -1,0 +1,87 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -input_pins
+        -max_paths 1
+Design : top_sa_2D
+Version: K-2015.06-SP2-1
+Date   : Fri Jan 22 13:17:27 2021
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: ss0p95v125c   Library: saed32hvt_ss0p95v125c
+Wire Load Model Mode: enclosed
+
+  Startpoint: core/_T_439_reg
+              (rising edge-triggered flip-flop clocked by CLK)
+  Endpoint: core/temp_io_out_c_7_0_reg[24]
+            (rising edge-triggered flip-flop clocked by CLK)
+  Path Group: CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Mesh               280000                saed32hvt_ss0p95v125c
+  PE_64              8000                  saed32hvt_ss0p95v125c
+  Tile               8000                  saed32hvt_ss0p95v125c
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock CLK (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  core/_T_439_reg/CLK (DFFX2_HVT)                         0.00       0.00 r
+  core/_T_439_reg/QN (DFFX2_HVT)                          0.18       0.18 r
+  core/U119/A (INVX4_HVT)                                 0.00       0.18 r
+  core/U119/Y (INVX4_HVT)                                 0.04       0.22 f
+  core/mesh_7_7/io_in_control_0_propagate (Tile)          0.00       0.22 f
+  core/mesh_7_7/tile_0_0/io_in_control_propagate (PE_64)
+                                                          0.00       0.22 f
+  core/mesh_7_7/tile_0_0/U10/A (NBUFFX4_HVT)              0.00       0.22 f
+  core/mesh_7_7/tile_0_0/U10/Y (NBUFFX4_HVT)              0.10       0.33 f
+  core/mesh_7_7/tile_0_0/U35/A (INVX0_HVT)                0.00       0.33 f
+  core/mesh_7_7/tile_0_0/U35/Y (INVX0_HVT)                0.14       0.46 r
+  core/mesh_7_7/tile_0_0/U410/A (INVX2_HVT)               0.00       0.46 r
+  core/mesh_7_7/tile_0_0/U410/Y (INVX2_HVT)               0.16       0.63 f
+  core/mesh_7_7/tile_0_0/U174/S0 (MUX21X1_HVT)            0.00       0.63 f
+  core/mesh_7_7/tile_0_0/U174/Y (MUX21X1_HVT)             0.19       0.82 r
+  core/mesh_7_7/tile_0_0/io_out_c[5] (PE_64)              0.00       0.82 r
+  core/mesh_7_7/io_out_c_0[5] (Tile)                      0.00       0.82 r
+  core/U680/A2 (OR2X1_HVT)                                0.00       0.82 r
+  core/U680/Y (OR2X1_HVT)                                 0.09       0.91 r
+  core/U678/A1 (AND2X1_HVT)                               0.00       0.91 r
+  core/U678/Y (AND2X1_HVT)                                0.08       0.99 r
+  core/U723/A2 (NAND2X0_HVT)                              0.00       0.99 r
+  core/U723/Y (NAND2X0_HVT)                               0.06       1.04 f
+  core/U725/A2 (NAND2X0_HVT)                              0.00       1.04 f
+  core/U725/Y (NAND2X0_HVT)                               0.05       1.09 r
+  core/U692/A1 (NAND2X0_HVT)                              0.00       1.09 r
+  core/U692/Y (NAND2X0_HVT)                               0.06       1.15 f
+  core/U691/A2 (NAND2X0_HVT)                              0.00       1.15 f
+  core/U691/Y (NAND2X0_HVT)                               0.06       1.21 r
+  core/U619/A1 (AO21X1_HVT)                               0.00       1.21 r
+  core/U619/Y (AO21X1_HVT)                                0.14       1.35 r
+  core/U136/A (INVX4_HVT)                                 0.00       1.35 r
+  core/U136/Y (INVX4_HVT)                                 0.05       1.40 f
+  core/U2399/A2 (OAI21X2_HVT)                             0.00       1.40 f
+  core/U2399/Y (OAI21X2_HVT)                              0.15       1.55 r
+  core/U2404/A1 (XNOR2X2_HVT)                             0.00       1.55 r
+  core/U2404/Y (XNOR2X2_HVT)                              0.13       1.67 r
+  core/temp_io_out_c_7_0_reg[24]/D (DFFX1_HVT)            0.00       1.67 r
+  data arrival time                                                  1.67
+
+  clock CLK (rise edge)                                   1.75       1.75
+  clock network delay (ideal)                             0.00       1.75
+  core/temp_io_out_c_7_0_reg[24]/CLK (DFFX1_HVT)          0.00       1.75 r
+  library setup time                                     -0.09       1.66
+  data required time                                                 1.66
+  --------------------------------------------------------------------------
+  data required time                                                 1.66
+  data arrival time                                                 -1.67
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -0.02
+
+
+1

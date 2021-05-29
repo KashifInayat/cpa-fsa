@@ -1,0 +1,20 @@
+ 
+****************************************
+Report : register
+Design : top_sa_2D
+Version: K-2015.06-SP2-1
+Date   : Mon Jan 25 13:27:25 2021
+****************************************
+
+Attributes:
+    b - black box (unknown)
+    h - hierarchical
+    n - noncombinational
+    r - removable
+    u - contains unmapped logic
+
+Cell                      Reference       Library             Area  Attributes
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+Total 0 cells                                             0.000000
+1

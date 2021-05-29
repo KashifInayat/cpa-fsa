@@ -1,0 +1,1 @@
+dc_shell-xg-t -f tdebug.tcl | tee run_dt.out
